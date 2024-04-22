@@ -27,7 +27,7 @@ const PersonalInfo = () => {
             const res = await axios.post("/api/rewrite", {
                 prompt: state.personalInfo[field]
             })
-            console.log(res)
+
             if (res?.status === 200) {
                 dispatch({
                     personalInfo: {

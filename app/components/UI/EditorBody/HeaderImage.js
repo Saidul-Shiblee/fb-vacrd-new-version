@@ -44,6 +44,9 @@ const HeaderImage = () => {
     }
 
 
+
+
+
     useEffect(() => {
 
         let colorThief = new ColorThief();
@@ -54,6 +57,7 @@ const HeaderImage = () => {
                 let palette = colorThief.getPalette(image, 5);
                 if (palette.length) dispatch({ headShotRingColor: generateGradient(palette) });
                 palette = [];
+
             };
         }
     }, [getPallets]);

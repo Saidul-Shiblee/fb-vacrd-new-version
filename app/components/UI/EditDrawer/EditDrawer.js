@@ -28,7 +28,7 @@ const EditDrawer = () => {
   const { drawerOpen, setDrawerOpen, editSection, state, editSectionType, setEditSectionType, editFeaturedSectionID, setEditFeaturedSectionID, editFeaturedSectionPosition, setEditFeaturedSectionPosition, editSectionItemID, setEditDectionItemID, editSectionItemPosition, setEditSectionItemPosition } = useGlobalContext()
 
 
-  console.log(state)
+
 
   return (
       <div className={`w-[35%] h-screen top-0 left-0 flex flex-col duration-300 ease-in-out bg-slate-50 shadow-lg overflow-y-auto   fixed ${drawerOpen ? "translate-x-0" :"-translate-x-full"} z-[99999] `} >

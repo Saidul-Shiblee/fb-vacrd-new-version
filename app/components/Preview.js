@@ -22,7 +22,7 @@ import { useSize } from '@/app/hooks/useSize';
 const Preview = (props) => {
     const { state, setDrawerOpen, setEditSection, setIconID, editSectionType, setEditSectionType, editFeaturedSectionID, setEditFeaturedSectionID } = useGlobalContext()
 
-   console.log(state)
+
     const [currentIcon, setCurrentIcon] = useState('')
     const handleMouserEnter = (e) => {
         const pElement = e.target?.querySelector('p')?.innerText;

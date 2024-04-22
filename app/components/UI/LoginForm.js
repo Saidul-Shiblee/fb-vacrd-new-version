@@ -69,7 +69,7 @@ const Login = () => {
         password: formData.password,
       });
 
-      console.log(res)
+
       if (!res.error) {
         router.replace("/");
       } else {
