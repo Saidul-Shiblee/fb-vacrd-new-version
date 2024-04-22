@@ -18,7 +18,7 @@ export async function POST(req) {
         const foundPermission = await findPermission({  });
 
 
-        console.log(foundUser,foundPermission)
+
 
         if (foundUser) {
             let permitted=true

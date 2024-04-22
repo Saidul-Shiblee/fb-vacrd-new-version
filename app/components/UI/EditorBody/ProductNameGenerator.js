@@ -24,7 +24,7 @@ const ProductNameGenerator = () => {
             const res = await axios.post("/api/generateProductName", {
                 prompt: prompt
             })
-            console.log(res)
+
             if (res?.status === 200) {
                 setGeneratedText(res?.data?.data)
                 document.getElementById('product_name_suggestion_modal').showModal()

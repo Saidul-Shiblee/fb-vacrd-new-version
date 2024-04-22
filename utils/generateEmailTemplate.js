@@ -460,7 +460,7 @@ ${
                           </div>
                         </td>
                       </tr>
-                      
+
                     </tbody>
                   </table>
                 </div>
@@ -706,7 +706,7 @@ ${
                                   href="${url}"
                                   style="
                                     display: inline-block;
-                                    background: #003a9b;
+                                    background: #0d222e;
                                     color: #ffffff;
                                     font-family: open Sans Helvetica, Arial,
                                       sans-serif;

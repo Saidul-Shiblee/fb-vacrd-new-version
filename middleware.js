@@ -11,9 +11,6 @@ export default async function middleware(req) {
     const isAdminRoute = adminRoutes.includes(path)
     const isPublicRoute = publicRoutes.includes(path)
 
-    console.log(path)
-
-    console.log(isProtectedRoute)
 
     const token = await getToken({ req });
     const res = NextResponse.next();
