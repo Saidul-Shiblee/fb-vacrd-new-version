@@ -35,7 +35,7 @@ export async function POST(request) {
         token: crypto.randomBytes(32).toString("hex"),
         purpose: "verify_email",
       });
-      const url = `http://localhost:3000/emailVerify?id=${result._id}&token=${token.token}`;
+      const url = `${process.env.BASE_URL}/emailVerify?id=${result._id}&token=${token.token}`;
       //Send verification email
       await sendEmail(
         result.email,
