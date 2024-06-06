@@ -1,4 +1,5 @@
 'use client '
+import { useSession } from 'next-auth/react'
 import { useGlobalContext } from '@/app/context/context'
 import GenerateCardHTML from '@/utils/generateCardHTML'
 import React, { useState } from 'react'
@@ -12,6 +13,8 @@ const Download = () => {
     const [link, setLink] = useState(false)
     const [fields, setFields] = useState(false)
     const [loading, setLoading] = useState(false)
+
+const {data:session}=useSession()
     const downloader = () => {
         const JSZip = require('jszip')
         return new Promise(async (resolve, reject) => {
@@ -157,19 +160,27 @@ const Download = () => {
     const changePreviwMode = async () => {
         return new Promise((res, rej) => {
             dispatch({ previewMode: false })
-            return res()
+            return setTimeout(res, 1000)
         })
     }
-    const handleDownload = async () => {
 
+    const handleDownload = async () => {
         setLoading(true)
+        if (session?.user?.role==='admin'){
+            await downloader()
+            dispatch({ previewMode: true })
+            setLoading(false)
+            return
+        }
+
         try {
             const res = await axios.post("/api/checkCount",{
                 item:'cardGeneration'
             })
             if (res?.status === 200) {
+
                 await downloader()
-                dispatch({ previewMode: true })
+
             }
 
         } catch (error) {
@@ -181,11 +192,15 @@ const Download = () => {
 
         }finally{
             setLoading(false)
+            dispatch({ previewMode: true })
+
         }
 
 
     }
-    return (
+
+
+   return (
         <div className='flex flex-col justify-center items-start gap-4 max-w-[448px] mb-10'>
             <h2 className='text-2xl font-semibold text-primary-dark-blue2'>
                 Download
@@ -218,8 +233,9 @@ const Download = () => {
             <button
                 onClick={handleDownload}
                 disabled={!risk || !link || !fields}
-                className="mt-2 font-semibold duration-500 ease-in-out transition uppercase px-4 sm:px-8 hover:bg-primary-dark-blue2 hover:text-primary-light-blue border-[1px] border-primary-dark-blue2 py-4 rounded-full bg-primary-light-blue text-primary-dark-blue2  disabled:text-gray-600 disabled:hover:bg-primary-light-blue disabled:cursor-not-allowed">
-                Download as zip
+                className="mt-2 w-60 h-14 font-semibold duration-500 ease-in-out transition uppercase px-4 sm:px-8 hover:bg-primary-dark-blue2 hover:text-primary-light-blue border-[1px] border-primary-dark-blue2 py-4 rounded-full bg-primary-light-blue text-primary-dark-blue2  disabled:text-gray-600 disabled:hover:bg-primary-light-blue disabled:cursor-not-allowed">
+                {!loading ? "Download as zip" : <div className='w-full flex justify-center items-center py-1'>
+                    <div className='dot-flashing '></div></div> }
             </button>
         </div>
     )

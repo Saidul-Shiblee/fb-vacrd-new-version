@@ -30,13 +30,13 @@ const Login = () => {
         "any.required": `Email is required`,
       }),
     password: Joi.string()
-      .min(6)
+      
       .required()
-      .pattern(new RegExp('^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{6,}$'))
+      
       .messages({
         "string.empty": `Password cannot be empty`,
         "any.required": `Password is required`,
-        'string.pattern.base': 'Password must contain at least one uppercase letter, one number, and one special character'
+        
       }),
   });
   //Instantiate React Hook Form

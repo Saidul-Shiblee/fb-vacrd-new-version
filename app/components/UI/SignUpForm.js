@@ -37,10 +37,13 @@ const SignUpForm = () => {
         "any.required": `Full name is required`,
       }),
     password: Joi.string()
+      .min(6)
+      .pattern(new RegExp('^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{6,}$'))
       .required()
       .messages({
         "string.empty": `Password cannot be empty`,
         "any.required": `Password is required`,
+        'string.pattern.base': 'Password must contain at least one uppercase letter, one number, and one special character'
       }),
     confirmPassword: Joi.string()
       .required()
